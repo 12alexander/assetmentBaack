@@ -32,14 +32,10 @@ UserSchema.post("save", function (error, doc, next) {
   next(error.code === 11000 ? new Error("The email is already in use") : error);
 });
 
-UserSchema.methods.getJWT = function () {
-  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+UserSchema.methods.getToken = function () {
+  return jwt.sign({ id: this._id }, process.env.JWT_KEY_SECRET, {
     expiresIn: process.env.JWT_EXPIRE,
   });
-};
-
-UserSchema.methods.compareToPassword = async function (password) {
-  return await bcrypt.compare(password, this.password);
 };
 
 module.exports = mongoose.model("User", UserSchema);

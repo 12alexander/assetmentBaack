@@ -4,13 +4,11 @@ const User = require("../models/user");
 const loginService = async ({ email, password }) => {
   const user = await User.findOne({ email }).select("password").exec();
   if (!user) {
-    return res.status(200).send({ message: "enter valid data" });
+    return { message: "enter valid data", code: 400 };
   }
   return (await bcrypt.compare(password, user.password))
-    ? res.status(401).json({
-        message: "enter valid data",
-      })
-    : res.status(200).send({ message: "Successful login" });
+    ? { message: user.getToken(), code: 200 }
+    : { message: "enter valid data wqe", code: 400 };
 };
 
 const registerUser = ({ email, password }) => User.create({ email, password });

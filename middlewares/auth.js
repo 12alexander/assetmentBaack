@@ -5,7 +5,7 @@ const isAuthenticated = (req, res, next) => {
   if (!token) return res.status(401).send({ message: "token missing" });
   try {
     const decoded = jwt.verify(token.substring(7), process.env.JWT_KEY_SECRET);
-    req.body._user_id = decoded.id;
+    req.body.userId = decoded.id;
   } catch (error) {
     return res.status(403).send({ message: "invalid token" });
   }

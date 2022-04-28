@@ -18,7 +18,7 @@ const FavShema = new mongoose.Schema(
         link: { type: String, required: true },
       },
     ],
-    user: { type: String, required: true },
+    userId: { type: String, required: true },
   },
   {
     timestamps: true,
