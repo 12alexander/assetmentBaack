@@ -3,3 +3,5 @@ const connectDatabase = require("./config/dbConfig");
 
 require("dotenv").config();
 app.listen(process.env.PORT || 5000, () => connectDatabase());
+
+module.exports = app;
