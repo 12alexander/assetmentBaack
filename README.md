@@ -25,3 +25,5 @@ JWT_EXPIRE=
 - createFavs
 - deleteFavs
 - findFavs
+
+### [Heroku](https://assessmentback.herokuapp.com/)
